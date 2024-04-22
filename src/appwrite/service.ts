@@ -94,9 +94,10 @@ class AppwriteService {
 
         try {
             const authUrl = await this.account.createOAuth2Session('google',[],navigation.reset({index: 0, routes: [{ name: 'Login' }]}));
-            console.log("authUrl:", authUrl);
-            const result = await openLink(String(authUrl)); 
-            console.log("result is",result)
+            const result = await openLink(String(authUrl));
+            if(result! === 'success'){
+                navigation.navigate("Home")
+            } 
             
         } catch (error) {
             Snackbar.show({
